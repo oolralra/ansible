@@ -1,0 +1,27 @@
+---
+- name: playbook
+  hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+
+    - name: libselinux-python installation
+      yum:
+        name: libselinux-python
+        state: present
+
+    - name: epel-release installation
+      yum:
+        name: epel-release
+        state: present
+
+    - name: nginx installation
+      yum:
+        name: nginx
+        state: present
+
+    - name: start and enable nginx
+      service:
+        name: nginx
+        state: started
+        enabled: true
